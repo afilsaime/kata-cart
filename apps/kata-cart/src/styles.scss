@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+*, *::before, *::after {box-sizing: border-box;}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.container {
+  max-width: 1128px;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.flex {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}

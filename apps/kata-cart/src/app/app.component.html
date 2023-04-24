@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<div class="container">
+  <header class="flex space-between items-center">
+    <h1 data-test="app-name">Kata Panier</h1>
+    <nav>
+      <a data-test="products-page-link" [routerLink]="['/products']" routerLinkActive="active">Produits</a>
+      <a data-test="cart-page-link" [routerLink]="['/cart']" routerLinkActive="active">Panier</a>
+    </nav>
+  </header>
+
+  <router-outlet></router-outlet>
+</div>

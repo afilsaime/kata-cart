@@ -1,0 +1,31 @@
+nav {
+  a {
+    position: relative;
+    margin: 0 2em;
+    font-size: 1rem;
+    font-weight: 700;
+
+    &::before {
+      content:'';
+      position: absolute;
+      top: 55%;
+      left: 0;
+      display: block;
+      width: 100%;
+      background-color: #5ecbbb;
+      height: 0.5em;
+      z-index: -1;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &.active::before, &:hover::before {
+      transform: scaleX(1);
+    }
+
+    & + a {
+      margin-right: 0;
+    }
+  }
+}
