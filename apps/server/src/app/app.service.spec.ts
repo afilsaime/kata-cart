@@ -1,8 +1,9 @@
-import { Test } from "@nestjs/testing";
+import { Test } from '@nestjs/testing';
 
-import { AppService } from "./app.service";
+import { AppService } from './app.service';
+import { MOCK_PRODUCTS } from '@kata-cart/mocks';
 
-describe("AppService", () => {
+describe('AppService', () => {
   let service: AppService;
 
   beforeAll(async () => {
@@ -13,9 +14,9 @@ describe("AppService", () => {
     service = app.get<AppService>(AppService);
   });
 
-  describe("getData", () => {
+  describe('getData', () => {
     it('should return "Hello API"', () => {
-      expect(service.getData()).toEqual({ message: "Hello API" });
+      expect(service.getProducts()).toEqual(MOCK_PRODUCTS);
     });
   });
 });
