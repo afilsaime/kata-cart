@@ -12,4 +12,5 @@ import { CommonModule } from '@angular/common';
 export class UiProductCardComponent {
   @Input() name!: string;
   @Input() category!: string;
+  @Input() taxIncludedPrice!: number;
 }

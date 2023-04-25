@@ -1,2 +1,3 @@
 <h3 data-test="product-name">{{ name }}</h3>
 <div><span class="label">Categorie: </span><span data-test="product-category">{{ category }}</span></div>
+<div class="price" data-test="product-tax-included-price">{{ taxIncludedPrice | currency: 'EUR' }}</div>

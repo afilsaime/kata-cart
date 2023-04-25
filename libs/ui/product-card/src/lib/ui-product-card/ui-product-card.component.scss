@@ -16,8 +16,21 @@
 h3 {
   margin-top: 0;
   margin-bottom: .3em;
+  min-height: 3em;
 }
 
 .label {
   font-weight: 600;
+}
+
+.price {
+  margin-top: 1em;
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  &::after {
+    content: 'TTC';
+    font-size: .5em;
+    vertical-align: text-top;
+  }
 }

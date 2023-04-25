@@ -21,4 +21,36 @@ describe('kata-cart products page', () => {
         .should('have.text', MOCK_PRODUCTS[dataIndex].category);
     });
   });
+
+  it('should display the products prices tax included', () => {
+    const productPricesWithTaxes = [
+      '4,62 €',
+      '4,04 €',
+      '10,21 €',
+      '1,50 €',
+      '3,81 €',
+      '6,37 €',
+      '9,10 €',
+      '8,26 €',
+      '6,85 €',
+      '10,00 €',
+      '18,88 €',
+      '15,47 €',
+      '13,04 €',
+      '13,91 €',
+      '11,53 €',
+      '11,01 €',
+      '88,33 €',
+      '91,62 €',
+    ];
+
+    getProducts().each((productCard, index) => {
+      cy.wrap(productCard)
+        .contains(
+          '[data-test=product-tax-included-price]',
+          productPricesWithTaxes[index]
+        )
+        .should('be.visible');
+    });
+  });
 });

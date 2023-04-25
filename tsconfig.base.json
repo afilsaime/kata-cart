@@ -20,7 +20,8 @@
       ],
       "@kata-cart/mocks": ["libs/mocks/src/index.ts"],
       "@kata-cart/models": ["libs/models/src/index.ts"],
-      "@kata-cart/ui/product-card": ["libs/ui/product-card/src/index.ts"]
+      "@kata-cart/ui/product-card": ["libs/ui/product-card/src/index.ts"],
+      "@kata-cart/utils/products": ["libs/utils/products/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

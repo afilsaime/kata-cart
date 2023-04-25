@@ -1,3 +1,4 @@
+import { MOCK_PRODUCTS, MOCK_PRODUCTS_WITH_TAXES } from '@kata-cart/mocks';
 import { ProductsService } from './products.service';
 import {
   HttpMethod,
@@ -21,8 +22,11 @@ describe('ProductsService', () => {
   });
 
   it('should get the products from the api', () => {
-    spectator.service.products$.subscribe();
+    spectator.service.products$.subscribe((products) =>
+      expect(products).toEqual(MOCK_PRODUCTS_WITH_TAXES)
+    );
 
-    spectator.expectOne('/server/api/products', HttpMethod.GET);
+    const req = spectator.expectOne('/server/api/products', HttpMethod.GET);
+    req.flush(MOCK_PRODUCTS);
   });
 });

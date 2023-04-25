@@ -1,6 +1,6 @@
 <section class="flex flex-wrap space-between">
   <ng-container *ngFor="let product of products$ | async">
-    <kc-ui-product-card data-test="product-card" *ngIf="product.productName" [name]="product.productName" [category]="product.category"></kc-ui-product-card>
+    <kc-ui-product-card data-test="product-card" *ngIf="product.productName" [name]="product.productName" [category]="product.category" [taxIncludedPrice]="product.taxIncludedPrice"></kc-ui-product-card>
   </ng-container>
 </section>
 
