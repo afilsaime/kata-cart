@@ -1,21 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MOCK_PRODUCTS } from '@kata-cart/mocks';
+import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
 import { ProductsListComponent } from './products-list.component';
+import { ProductsService } from '@kata-cart/data-access/products';
+import { of } from 'rxjs';
 
 describe('ProductsListComponent', () => {
-  let component: ProductsListComponent;
-  let fixture: ComponentFixture<ProductsListComponent>;
+  let spectator: Spectator<ProductsListComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ProductsListComponent],
-    }).compileComponents();
+  const createComponent = createComponentFactory({
+    component: ProductsListComponent,
+    providers: [
+      { provide: ProductsService, useValue: { products$: of(MOCK_PRODUCTS) } },
+    ],
+  });
 
-    fixture = TestBed.createComponent(ProductsListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
+  });
+
+  it('should list the products', () => {
+    const productCards = spectator.queryAll('[data-test=product-card]');
+    expect(productCards.length).toEqual(18);
   });
 });

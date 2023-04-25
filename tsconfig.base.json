@@ -15,8 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@kata-cart/data-access/products": [
+        "libs/data-access/products/src/index.ts"
+      ],
       "@kata-cart/mocks": ["libs/mocks/src/index.ts"],
-      "@kata-cart/models": ["libs/models/src/index.ts"]
+      "@kata-cart/models": ["libs/models/src/index.ts"],
+      "@kata-cart/ui/product-card": ["libs/ui/product-card/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+  padding: 1em;
+  margin-bottom: 1em;
+  background-color: #e6f9f6;
+
+  @media(min-width: 800px) {
+    width: 48%;
+  }
+
+  @media(min-width: 1240px) {
+    width: 30%;
+  }
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: .3em;
+}
+
+.label {
+  font-weight: 600;
+}
