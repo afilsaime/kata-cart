@@ -9,5 +9,16 @@ describe('kata-cart products page', () => {
 
   it('should display the list of products', () => {
     getProducts().should('have.length', 18);
+    getProducts().each((productCard, index) => {
+      //first index isn't displayed because there is no title
+      const dataIndex = index + 1;
+
+      cy.wrap(productCard)
+        .find('[data-test=product-name]')
+        .should('have.text', MOCK_PRODUCTS[dataIndex].productName);
+      cy.wrap(productCard)
+        .find('[data-test=product-category]')
+        .should('have.text', MOCK_PRODUCTS[dataIndex].category);
+    });
   });
 });
