@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'kata-cart-cart-page',
+  selector: 'kc-cart-cart-page',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartPageComponent {}

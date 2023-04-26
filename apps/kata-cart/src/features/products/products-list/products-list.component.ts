@@ -1,5 +1,5 @@
 import { UiProductCardComponent } from '@kata-cart/ui/product-card';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsService } from '@kata-cart/data-access/products';
 import { UiDropdownSelectComponent } from '@kata-cart/ui/dropdown-select';
@@ -12,6 +12,7 @@ import { CartService } from '@kata-cart/data-access/cart';
   imports: [CommonModule, UiProductCardComponent, UiDropdownSelectComponent],
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent {
   products$ = this.productsService.filteredProducts$;
