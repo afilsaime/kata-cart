@@ -1,6 +1,14 @@
-<section class="flex flex-wrap space-between">
+<section id="category-selection" *ngIf="productsCategories$ | async as categories">
+  <span class="selected-category-label">Categorie sélectionnée :</span>
+  <kc-ui-dropdown-select [options]="categories" [selectedOption]="(selectedCategory$ | async) || ''"
+    (optionSelected)="onCategorySelected($event)"></kc-ui-dropdown-select>
+  <button data-test="clear-filter-button" *ngIf="selectedCategory$ | async" (click)="onCategorySelected('')">Supprimer
+    le filtre</button>
+</section>
+<section id="products-list" class="flex flex-wrap space-between">
   <ng-container *ngFor="let product of products$ | async">
-    <kc-ui-product-card data-test="product-card" *ngIf="product.productName" [name]="product.productName" [category]="product.category" [taxIncludedPrice]="product.taxIncludedPrice"></kc-ui-product-card>
+    <kc-ui-product-card data-test="product-card" *ngIf="product.productName && product.taxIncludedPrice"
+      [name]="product.productName" [category]="product.category"
+      [taxIncludedPrice]="product.taxIncludedPrice"></kc-ui-product-card>
   </ng-container>
 </section>
-

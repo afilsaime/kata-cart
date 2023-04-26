@@ -1,21 +1,39 @@
-import { MOCK_PRODUCTS } from '@kata-cart/mocks';
-import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
+import {
+  MOCK_PRODUCTS_CATEGORIES,
+  MOCK_PRODUCTS_WITH_TAXES,
+} from '@kata-cart/mocks';
+import {
+  Spectator,
+  SpyObject,
+  createComponentFactory,
+} from '@ngneat/spectator/jest';
 import { ProductsListComponent } from './products-list.component';
 import { ProductsService } from '@kata-cart/data-access/products';
 import { of } from 'rxjs';
 
 describe('ProductsListComponent', () => {
   let spectator: Spectator<ProductsListComponent>;
+  let mockProductsService: SpyObject<ProductsService>;
 
   const createComponent = createComponentFactory({
     component: ProductsListComponent,
     providers: [
-      { provide: ProductsService, useValue: { products$: of(MOCK_PRODUCTS) } },
+      {
+        provide: ProductsService,
+        useValue: {
+          filteredProducts$: of(MOCK_PRODUCTS_WITH_TAXES),
+          productsCategories$: of(MOCK_PRODUCTS_CATEGORIES),
+          selectedCategory$: of('Books'),
+          selectCategory: jest.fn(),
+        },
+      },
     ],
   });
 
   beforeEach(() => {
     spectator = createComponent();
+    mockProductsService = spectator.inject(ProductsService);
+    mockProductsService.selectCategory.mockClear();
   });
 
   it('should create', () => {
@@ -23,7 +41,24 @@ describe('ProductsListComponent', () => {
   });
 
   it('should list the products', () => {
+    console.log(spectator.element.innerHTML);
     const productCards = spectator.queryAll('[data-test=product-card]');
     expect(productCards.length).toEqual(18);
+  });
+
+  it('should set the selected category if an option is selected', () => {
+    spectator.triggerEventHandler(
+      'kc-ui-dropdown-select',
+      'optionSelected',
+      'category'
+    );
+    expect(mockProductsService.selectCategory).toHaveBeenCalledTimes(1);
+    expect(mockProductsService.selectCategory).toHaveBeenCalledWith('category');
+  });
+
+  it('should reset the selected category if the clear filter button has been clicked', () => {
+    spectator.click('[data-test=clear-filter-button]');
+    expect(mockProductsService.selectCategory).toHaveBeenCalledTimes(1);
+    expect(mockProductsService.selectCategory).toHaveBeenCalledWith('');
   });
 });

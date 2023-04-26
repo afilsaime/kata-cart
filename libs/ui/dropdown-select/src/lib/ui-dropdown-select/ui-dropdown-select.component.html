@@ -1,0 +1,5 @@
+<button class="dropdown-button" (click)="togglePanel()">{{selectedOption ? selectedOption : '-'}}</button>
+
+<div class="dropdown-panel" [ngClass]="{ opened }">
+  <button *ngFor="let option of options" (click)="onOptionSelected(option)" class="dropdown-option" [ngClass]="{active: selectedOption === option}">{{ option }}</button>
+</div>

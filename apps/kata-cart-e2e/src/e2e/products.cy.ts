@@ -1,5 +1,11 @@
 import { MOCK_PRODUCTS } from '@kata-cart/mocks';
-import { getProducts } from '../support/products.po';
+import {
+  getBooksCategory,
+  getCategoriesFilterDropdown,
+  getCategoryOptions,
+  getClearFilterButton,
+  getProducts,
+} from '../support/products.po';
 
 describe('kata-cart products page', () => {
   beforeEach(() => {
@@ -52,5 +58,16 @@ describe('kata-cart products page', () => {
         )
         .should('be.visible');
     });
+  });
+
+  it('should filter the list of products', () => {
+    getClearFilterButton().should('not.exist');
+    getCategoriesFilterDropdown().click();
+    getCategoryOptions().should('have.length', 5);
+    getBooksCategory().click();
+    getProducts().should('have.length', 4);
+    getClearFilterButton().should('be.visible');
+    getClearFilterButton().click();
+    getProducts().should('have.length', 18);
   });
 });

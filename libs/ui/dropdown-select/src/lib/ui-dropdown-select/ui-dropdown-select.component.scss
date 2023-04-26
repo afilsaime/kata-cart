@@ -1,0 +1,48 @@
+:host {
+  position: relative,
+}
+
+button {
+  border: none;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: .5em 1em;
+  background: #b1efe2;
+}
+
+.dropdown-button::after {
+  content: '⏷';
+  margin-left: .5em;
+  vertical-align: text-bottom;
+}
+
+.dropdown-panel {
+  position: absolute;
+  max-height: 12.813em;
+  overflow: auto;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5em;
+  transform: translateY(10%);
+  opacity: 0;
+  transform-origin: top center ;
+  transition: transform .1s ease-in-out, opacity .1s ease-in-out;
+
+  &.opened {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  button {
+    display: block;
+    width: 100%;
+
+    &.active, &:hover {
+      background: #6cd9c2;
+    }
+  }
+}
+
+
+
+

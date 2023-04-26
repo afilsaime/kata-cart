@@ -319,3 +319,50 @@ export const MOCK_PRODUCTS_WITH_TAXES: Product[] = [
     category: 'Parfum',
   },
 ];
+
+export const MOCK_PRODUCTS_CATEGORIES: string[] = [
+  'Food',
+  'Medecine',
+  'Books',
+  'Electric',
+  'Parfum',
+];
+
+export const MOCK_BOOKS_WITH_TAXES: Product[] = [
+  {
+    id: 3,
+    productName: 'The Stranger in the Lifeboat',
+    price: 16.38,
+    taxIncludedPrice: 18.88,
+    quantity: 7,
+    isImported: true,
+    category: 'Books',
+  },
+  {
+    id: 11,
+    productName: 'The World of the End',
+    price: 14.02,
+    taxIncludedPrice: 15.47,
+    quantity: 9,
+    isImported: false,
+    category: 'Books',
+  },
+  {
+    id: 19,
+    productName: 'the power of habit',
+    price: 11.84,
+    taxIncludedPrice: 13.04,
+    quantity: 4,
+    isImported: false,
+    category: 'Books',
+  },
+  {
+    id: 8,
+    productName: 'Sapiens',
+    price: 12.61,
+    taxIncludedPrice: 13.91,
+    quantity: 8,
+    isImported: false,
+    category: 'Books',
+  },
+];
