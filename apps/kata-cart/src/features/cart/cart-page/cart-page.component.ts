@@ -5,7 +5,7 @@ import { UiCartItemComponent } from '@kata-cart/ui/cart-item';
 import { CartItem } from '@kata-cart/models';
 
 @Component({
-  selector: 'kc-cart-cart-page',
+  selector: 'kc-cart-page',
   standalone: true,
   imports: [CommonModule, UiCartItemComponent],
   templateUrl: './cart-page.component.html',
