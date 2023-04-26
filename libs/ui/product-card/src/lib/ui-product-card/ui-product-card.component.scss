@@ -1,16 +1,7 @@
 :host {
   width: 100%;
   padding: 1em;
-  margin-bottom: 1em;
   background-color: #e6f9f6;
-
-  @media(min-width: 800px) {
-    width: 48%;
-  }
-
-  @media(min-width: 1240px) {
-    width: 30%;
-  }
 }
 
 h3 {
@@ -57,4 +48,16 @@ h3 {
     background: #33a594;
     opacity: 0.8;
   }
+
+  &.disabled, &.disabled:hover, &.disabled:active {
+    background: #dbdbdb;
+    color: #585858;
+    cursor: initial;
+    pointer-events: none;
+  }
+}
+
+.out-of-stock {
+  font-size: .8rem;
+  margin-right: 1em;
 }

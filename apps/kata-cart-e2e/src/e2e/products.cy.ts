@@ -1,8 +1,6 @@
 import { MOCK_PRODUCTS } from '@kata-cart/mocks';
 import {
-  getBooksCategory,
   getCategoriesFilterDropdown,
-  getCategoryOptions,
   getClearFilterButton,
   getProducts,
 } from '../support/products.po';

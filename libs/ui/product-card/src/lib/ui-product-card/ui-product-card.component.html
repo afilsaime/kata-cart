@@ -2,7 +2,14 @@
 <div><span class="label">Categorie: </span><span data-test="product-category">{{ category }}</span></div>
 <div class="price" data-test="product-tax-included-price">{{ taxIncludedPrice | currency: 'EUR' }}</div>
 <div class="action-panel">
-  <kc-ui-dropdown-select data-test="product-quantity-select" [options]="this.quantityOptions"
-    [selectedOption]="selectedQuantity" (optionSelected)="onQuantitySelected($event)"></kc-ui-dropdown-select>
-  <button (click)="onAddToCart()" class="add-to-cart">Ajouter au panier</button>
+  <kc-ui-dropdown-select *ngIf="quantityOptions.length; else outOfStock" data-test="product-quantity-select"
+    [options]="this.quantityOptions" [selectedOption]="selectedQuantity"
+    (optionSelected)="onQuantitySelected($event)"></kc-ui-dropdown-select>
+  <button (click)="onAddToCart()" class="add-to-cart" [ngClass]="{disabled: quantityOptions.length === 0} ">
+    Ajouter au panier
+  </button>
 </div>
+
+<ng-template #outOfStock>
+  <span class="out-of-stock">Non Disponible</span>
+</ng-template>

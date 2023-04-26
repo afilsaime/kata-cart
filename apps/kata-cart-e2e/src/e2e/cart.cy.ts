@@ -22,6 +22,15 @@ describe('kata-cart products page', () => {
     cy.visit('/products');
   });
 
+  it('should display a message on product that are out of stock', () => {
+    cy.get('.action-panel')
+      .eq(9)
+      .within((panel) => {
+        cy.wrap(panel).get('.out-of-stock').should('be.visible');
+        cy.wrap(panel).get('.add-to-cart').should('have.class', 'disabled');
+      });
+  });
+
   it('should display a message when the cart is empty', () => {
     getCartPageLink().click();
     cy.get('section').should('have.text', 'Panier Vide');

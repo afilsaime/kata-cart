@@ -19,3 +19,17 @@ button {
 #category-selection {
   margin-bottom: 1.3em;
 }
+
+#products-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+
+  @media(min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr) ;
+  }
+
+  @media(min-width: 1240px) {
+    grid-template-columns: repeat(3, 1fr) ;
+  }
+}
