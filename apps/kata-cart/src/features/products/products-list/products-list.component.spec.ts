@@ -67,15 +67,12 @@ describe('ProductsListComponent', () => {
     const cartService = spectator.inject(CartService);
     jest.spyOn(cartService, 'addToCart');
 
-    spectator.triggerEventHandler(
-      'kc-ui-product-card',
-      'addToCart',
-      MOCK_PRODUCTS_WITH_TAXES[1]
-    );
+    spectator.triggerEventHandler('kc-ui-product-card', 'addToCart', 4);
 
     expect(cartService.addToCart).toHaveBeenCalledTimes(1);
     expect(cartService.addToCart).toHaveBeenCalledWith(
-      MOCK_PRODUCTS_WITH_TAXES[1]
+      MOCK_PRODUCTS_WITH_TAXES[1],
+      4
     );
   });
 });

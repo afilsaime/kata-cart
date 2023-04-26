@@ -24,13 +24,13 @@ describe('CartService', () => {
   it('should add items to the cart', (done) => {
     spectator.service.cart$.subscribe();
 
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2]);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1], 2);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1], 1);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2], 1);
 
     spectator.service.cart$.subscribe((cart) => {
       expect(cart).toEqual([
-        { product: MOCK_PRODUCTS_WITH_TAXES[1], quantity: 2 },
+        { product: MOCK_PRODUCTS_WITH_TAXES[1], quantity: 3 },
         { product: MOCK_PRODUCTS_WITH_TAXES[2], quantity: 1 },
       ]);
       done();
@@ -40,7 +40,7 @@ describe('CartService', () => {
   it('should remove items from the cart', (done) => {
     spectator.service.cart$.subscribe();
 
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1], 1);
 
     spectator.service.deleteFromCart({
       product: MOCK_PRODUCTS_WITH_TAXES[1],
@@ -55,9 +55,9 @@ describe('CartService', () => {
   it('should have the right items count', (done) => {
     spectator.service.cartItemsCount$.subscribe();
 
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2]);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1], 1);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1], 1);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2], 1);
 
     spectator.service.cartItemsCount$.subscribe((count) => {
       expect(count).toEqual(3);
@@ -68,8 +68,8 @@ describe('CartService', () => {
   it('should calculate the tax excluded total', (done) => {
     spectator.service.taxExcludedTotal$.subscribe();
 
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2]);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1], 1);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2], 1);
 
     spectator.service.taxExcludedTotal$.subscribe((total) => {
       expect(total).toEqual(8.21);
@@ -80,8 +80,8 @@ describe('CartService', () => {
   it('should calculate the tax included total', (done) => {
     spectator.service.taxIncludedTotal$.subscribe();
 
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2]);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1], 1);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2], 1);
 
     spectator.service.taxIncludedTotal$.subscribe((total) => {
       expect(total).toEqual(8.66);
@@ -92,8 +92,7 @@ describe('CartService', () => {
   it('should calculate the total tax amount', (done) => {
     spectator.service.totalTaxes$.subscribe();
 
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[3]);
-    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[3]);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[3], 2);
 
     spectator.service.totalTaxes$.subscribe((total) => {
       expect(total).toEqual(1);

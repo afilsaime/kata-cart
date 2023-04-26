@@ -20,12 +20,14 @@ describe('UiProductCardComponent', () => {
         name: 'Product Name',
         category: 'Product Category',
         taxIncludedPrice: 3,
+        stock: 2,
       },
     });
   });
 
   it('should create', () => {
     expect(spectator.component).toBeTruthy();
+    expect(spectator.component.quantityOptions).toEqual(['1', '2']);
   });
 
   it('should set the name and the category', () => {
@@ -48,5 +50,16 @@ describe('UiProductCardComponent', () => {
     spectator.click('.add-to-cart');
 
     expect(addToCardSpy).toBeCalledTimes(1);
+    expect(addToCardSpy).toBeCalledWith(1);
+  });
+
+  it('should set the selected quantity', () => {
+    spectator.triggerEventHandler(
+      'kc-ui-dropdown-select',
+      'optionSelected',
+      '3'
+    );
+
+    expect(spectator.component.selectedQuantity).toEqual('3');
   });
 });

@@ -50,9 +50,9 @@ export class CartService {
     )
   );
 
-  addToCart(product: Product) {
+  addToCart(product: Product, quantity: number) {
     this.cartActions.next({
-      item: { product, quantity: 1 },
+      item: { product, quantity },
       type: 'add',
     });
   }

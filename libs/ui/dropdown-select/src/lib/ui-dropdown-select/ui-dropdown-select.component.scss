@@ -8,6 +8,7 @@ button {
   font-size: 1rem;
   padding: .5em 1em;
   background: #b1efe2;
+  cursor: pointer;
 }
 
 .dropdown-button::after {
@@ -27,10 +28,12 @@ button {
   opacity: 0;
   transform-origin: top center ;
   transition: transform .1s ease-in-out, opacity .1s ease-in-out;
+  pointer-events: none;
 
   &.opened {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
   }
 
   button {

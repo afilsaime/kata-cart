@@ -1,6 +1,7 @@
 <section id="category-selection" *ngIf="productsCategories$ | async as categories">
   <span class="selected-category-label">Categorie sélectionnée :</span>
-  <kc-ui-dropdown-select [options]="categories" [selectedOption]="(selectedCategory$ | async) || ''"
+  <kc-ui-dropdown-select data-test="category-filter-dropdown" [options]="categories"
+    [selectedOption]="(selectedCategory$ | async) || ''"
     (optionSelected)="onCategorySelected($event)"></kc-ui-dropdown-select>
   <button data-test="clear-filter-button" *ngIf="selectedCategory$ | async" (click)="onCategorySelected('')">Supprimer
     le filtre</button>
@@ -9,6 +10,6 @@
   <ng-container *ngFor="let product of products$ | async">
     <kc-ui-product-card data-test="product-card" *ngIf="product.productName && product.taxIncludedPrice"
       [name]="product.productName" [category]="product.category" [taxIncludedPrice]="product.taxIncludedPrice"
-      (addToCart)="onAddToCart(product)"></kc-ui-product-card>
+      [stock]="product.quantity" (addToCart)="onAddToCart(product, $event)"></kc-ui-product-card>
   </ng-container>
 </section>

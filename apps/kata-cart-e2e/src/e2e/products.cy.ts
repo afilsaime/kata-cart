@@ -62,9 +62,12 @@ describe('kata-cart products page', () => {
 
   it('should filter the list of products', () => {
     getClearFilterButton().should('not.exist');
-    getCategoriesFilterDropdown().click();
-    getCategoryOptions().should('have.length', 5);
-    getBooksCategory().click();
+    getCategoriesFilterDropdown().within((dropdown) => {
+      cy.wrap(dropdown).get('.dropdown-button').click();
+      cy.wrap(dropdown).get('.dropdown-option').should('have.length', 5);
+      cy.wrap(dropdown).get('.dropdown-option:nth-child(3)').click();
+    });
+
     getProducts().should('have.length', 4);
     getClearFilterButton().should('be.visible');
     getClearFilterButton().click();

@@ -1,4 +1,6 @@
 export const getCartItemsCount = () => cy.get('[data-test=cart-items-count]');
+export const getAppleFujiQuantitySelect = () =>
+  cy.get('[data-test="product-quantity-select"]').eq(0);
 export const getAppleFujiAddToCardButton = () => cy.get('.add-to-cart').eq(0);
 export const getMuffinBatAddToCardButton = () => cy.get('.add-to-cart').eq(1);
 export const getGoldschalgerAddToCardButton = () =>

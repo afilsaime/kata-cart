@@ -28,7 +28,7 @@ export class ProductsListComponent {
     this.productsService.selectCategory(category);
   }
 
-  onAddToCart(product: Product) {
-    this.cartService.addToCart(product);
+  onAddToCart(product: Product, quantity: number) {
+    this.cartService.addToCart(product, quantity);
   }
 }

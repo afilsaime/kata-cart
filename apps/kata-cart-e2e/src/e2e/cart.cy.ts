@@ -1,6 +1,7 @@
 import { MOCK_PRODUCTS } from '@kata-cart/mocks';
 import {
   getAppleFujiAddToCardButton,
+  getAppleFujiQuantitySelect,
   getCartItemsCount,
   getCartNames,
   getDeleteButtons,
@@ -29,25 +30,32 @@ describe('kata-cart products page', () => {
   it('should add products to the cart', () => {
     getCartItemsCount().should('not.exist');
 
-    //Adding items to the cart
+    //Add item to the cart
     getAppleFujiAddToCardButton().click();
     getCartItemsCount().should('have.text', 1);
 
-    getAppleFujiAddToCardButton().click();
-    getCartItemsCount().should('have.text', 2);
+    //Set quantity to 2
+    getAppleFujiQuantitySelect().within((select) => {
+      cy.wrap(select).get('.dropdown-button').click();
+      cy.wrap(select).get('.dropdown-option:nth-child(2)').click();
+    });
 
+    //Add 2 item to the cart
     getAppleFujiAddToCardButton().click();
     getCartItemsCount().should('have.text', 3);
 
+    //Add 1 item to the cart
     getMuffinBatAddToCardButton().click();
     getCartItemsCount().should('have.text', 4);
 
+    //Add 1 item to the cart
     getGoldschalgerAddToCardButton().click();
     getCartItemsCount().should('have.text', 5);
 
+    //Click on cart page link
     getCartPageLink().click();
 
-    //checking the added items
+    //checking the cart items
     const expectedNames = [
       'Apple - Fuji',
       'Muffin Batt - Carrot Spice',
@@ -86,6 +94,7 @@ describe('kata-cart products page', () => {
       cy.wrap(price).should('have.text', expectedTaxIncludedPrices[index]);
     });
 
+    //check taxes and total price
     getTotalTaxes().should('have.text', '1,45\u00a0€');
     getTaxIncludedTotal().should('have.text', '28,11\u00a0€');
   });
