@@ -26,6 +26,8 @@ describe('CartPageComponent', () => {
             },
           ]),
           cartItemsCount$: of(1),
+          totalTaxes$: of(1),
+          taxIncludedTotal$: of(1),
           deleteFromCart: jest.fn(),
         },
       },

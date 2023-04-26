@@ -52,7 +52,7 @@ describe('CartService', () => {
     });
   });
 
-  it('should habe the right items count', (done) => {
+  it('should have the right items count', (done) => {
     spectator.service.cartItemsCount$.subscribe();
 
     spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
@@ -61,6 +61,42 @@ describe('CartService', () => {
 
     spectator.service.cartItemsCount$.subscribe((count) => {
       expect(count).toEqual(3);
+      done();
+    });
+  });
+
+  it('should calculate the tax excluded total', (done) => {
+    spectator.service.taxExcludedTotal$.subscribe();
+
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2]);
+
+    spectator.service.taxExcludedTotal$.subscribe((total) => {
+      expect(total).toEqual(8.21);
+      done();
+    });
+  });
+
+  it('should calculate the tax included total', (done) => {
+    spectator.service.taxIncludedTotal$.subscribe();
+
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[1]);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[2]);
+
+    spectator.service.taxIncludedTotal$.subscribe((total) => {
+      expect(total).toEqual(8.66);
+      done();
+    });
+  });
+
+  it('should calculate the total tax amount', (done) => {
+    spectator.service.totalTaxes$.subscribe();
+
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[3]);
+    spectator.service.addToCart(MOCK_PRODUCTS_WITH_TAXES[3]);
+
+    spectator.service.totalTaxes$.subscribe((total) => {
+      expect(total).toEqual(1);
       done();
     });
   });

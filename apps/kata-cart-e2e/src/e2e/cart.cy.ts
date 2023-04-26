@@ -10,6 +10,8 @@ import {
   getProductsPrices,
   getProductsQuantities,
   getProductsTaxes,
+  getTaxIncludedTotal,
+  getTotalTaxes,
 } from '../support/cart.po';
 import { getCartPageLink } from '../support/app.po';
 
@@ -83,6 +85,9 @@ describe('kata-cart products page', () => {
     getProductTaxIncludedPrices().each((price, index) => {
       cy.wrap(price).should('have.text', expectedTaxIncludedPrices[index]);
     });
+
+    getTotalTaxes().should('have.text', '1,45\u00a0€');
+    getTaxIncludedTotal().should('have.text', '28,11\u00a0€');
   });
 
   it('should delete products when clicking on the buttons', () => {

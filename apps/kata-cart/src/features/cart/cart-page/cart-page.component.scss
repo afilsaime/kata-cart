@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+
+  .cart-items {
+    width: 80%;
+  }
+
+  aside{
+    margin-left: 1em;
+    flex-grow: 1;
+
+
+    div {
+      background-color: #e6f9f6;
+      padding: 1em;
+      font-size: .8rem;
+
+      .total-price {
+        font-weight: 600;
+      }
+
+      .total-taxes {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .tax-included-total {
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+}
+

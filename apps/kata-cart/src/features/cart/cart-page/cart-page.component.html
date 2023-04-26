@@ -1,7 +1,18 @@
-<section *ngIf="cartItemsCount$ | async; else emptyCart">
-  <kc-ui-cart-item *ngFor="let cartItem of cart$ | async" [cartItem]="cartItem"
-    (deleteFromCart)="onDeleteFromCart(cartItem)"></kc-ui-cart-item>
-</section>
+<div class="wrapper" *ngIf="cartItemsCount$ | async; else emptyCart">
+  <section class="cart-items">
+    <kc-ui-cart-item *ngFor="let cartItem of cart$ | async" [cartItem]="cartItem"
+      (deleteFromCart)="onDeleteFromCart(cartItem)"></kc-ui-cart-item>
+  </section>
+  <aside>
+    <div>
+      <p>Total taxes : <span class="total-taxes" data-test="total-taxes">{{((totalTaxes$ | async) || 0) | currency:
+          'EUR'}}</span></p>
+      <p class="total-price">Total TTC : <span data-test="tax-included-total"
+          class="tax-included-total">{{((taxIncludedTotal$ | async) || 0) |
+          currency: 'EUR'}}</span></p>
+    </div>
+  </aside>
+</div>
 
 <ng-template #emptyCart>
   <section>Panier Vide</section>

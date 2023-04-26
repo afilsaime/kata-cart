@@ -11,3 +11,6 @@ export const getProductsPrices = () => cy.get('[data-test="product-price"]');
 export const getProductTaxIncludedPrices = () =>
   cy.get('[data-test="product-tax-included-price"]');
 export const getDeleteButtons = () => cy.get('[data-test="delete-button"]');
+export const getTotalTaxes = () => cy.get('[data-test="total-taxes"]');
+export const getTaxIncludedTotal = () =>
+  cy.get('[data-test="tax-included-total"]');

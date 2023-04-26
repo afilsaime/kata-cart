@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, CartItem, Product } from '@kata-cart/models';
 import { modifyCart } from '@kata-cart/utils/cart';
-import { Subject, map, scan, shareReplay, tap } from 'rxjs';
+import { Subject, combineLatest, map, scan, shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,6 @@ export class CartService {
 
   cart$ = this.cartActions$.pipe(
     scan((cart, cartAction) => modifyCart(cart, cartAction), [] as CartItem[]),
-    tap((cart) => console.log(cart)),
     shareReplay(1)
   );
 
@@ -21,6 +20,33 @@ export class CartService {
       cart.reduce((accQuantity, cartItem) => {
         return accQuantity + cartItem.quantity;
       }, 0)
+    )
+  );
+
+  taxExcludedTotal$ = this.cart$.pipe(
+    map((cart) => {
+      return cart.reduce((accTotal, { quantity, product }) => {
+        return accTotal + quantity * product.price;
+      }, 0);
+    })
+  );
+
+  taxIncludedTotal$ = this.cart$.pipe(
+    map((cart) => {
+      return cart.reduce((accTotal, { quantity, product }) => {
+        if (!product.taxIncludedPrice) return 0;
+        return accTotal + quantity * product.taxIncludedPrice;
+      }, 0);
+    })
+  );
+
+  totalTaxes$ = combineLatest([
+    this.taxIncludedTotal$,
+    this.taxExcludedTotal$,
+  ]).pipe(
+    map(
+      ([taxIncludedTotal, taxExcludedTotal]) =>
+        taxIncludedTotal - taxExcludedTotal
     )
   );
 

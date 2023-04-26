@@ -15,6 +15,8 @@ import { CartItem } from '@kata-cart/models';
 export class CartPageComponent {
   cart$ = this.cartService.cart$;
   cartItemsCount$ = this.cartService.cartItemsCount$;
+  totalTaxes$ = this.cartService.totalTaxes$;
+  taxIncludedTotal$ = this.cartService.taxIncludedTotal$;
 
   constructor(private cartService: CartService) {}
 
