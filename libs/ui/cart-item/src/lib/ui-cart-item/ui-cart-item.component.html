@@ -1,0 +1,14 @@
+<div data-test="product-name" class="product-name">{{cartItem.product.productName}}</div>
+<div class="product-quantity">Qte: <span data-test="product-quantity">{{cartItem.quantity}}</span></div>
+<div class="product-taxes">
+  Taxes: <span data-test="product-taxes">{{cartItem.product.taxIncludedPrice ? ((cartItem.product.taxIncludedPrice -
+    cartItem.product.price) | currency:
+    'EUR')
+    : (0 | currency: 'EUR')}}</span>
+</div>
+<div class="product-price" data-test="product-price">Prix Unitaire HT: <span>{{cartItem.product.price | currency:
+    'EUR'}}</span></div>
+<div class="product-tax-included-price" data-test="product-tax-included-price">Prix Unitaire TTC:
+  <span>{{cartItem.product.taxIncludedPrice | currency: 'EUR'}}</span>
+</div>
+<button data-test="delete-button" (click)="deleteFromCart.emit()">x</button>

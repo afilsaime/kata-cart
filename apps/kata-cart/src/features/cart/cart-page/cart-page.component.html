@@ -1,1 +1,8 @@
-<p>cart-page works!</p>
+<section *ngIf="cartItemsCount$ | async; else emptyCart">
+  <kc-ui-cart-item *ngFor="let cartItem of cart$ | async" [cartItem]="cartItem"
+    (deleteFromCart)="onDeleteFromCart(cartItem)"></kc-ui-cart-item>
+</section>
+
+<ng-template #emptyCart>
+  <section>Panier Vide</section>
+</ng-template>

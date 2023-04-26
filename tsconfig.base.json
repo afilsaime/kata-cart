@@ -21,6 +21,7 @@
       ],
       "@kata-cart/mocks": ["libs/mocks/src/index.ts"],
       "@kata-cart/models": ["libs/models/src/index.ts"],
+      "@kata-cart/ui/cart-item": ["libs/ui/cart-item/src/index.ts"],
       "@kata-cart/ui/dropdown-select": ["libs/ui/dropdown-select/src/index.ts"],
       "@kata-cart/ui/product-card": ["libs/ui/product-card/src/index.ts"],
       "@kata-cart/utils/cart": ["libs/utils/cart/src/index.ts"],

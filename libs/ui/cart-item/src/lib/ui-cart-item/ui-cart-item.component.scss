@@ -1,0 +1,36 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: .5em auto;
+
+  @media(min-width:1240px) {
+   grid-template-columns: 1.5fr .5fr 1fr 1fr 1fr .2fr
+  }
+}
+
+div {
+  font-size: .8rem;
+}
+
+.product-name, span {
+  font-size:1rem;
+  font-weight: 700;
+}
+
+button {
+  border: none;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  background: #ff4040;
+  cursor: pointer;
+
+  &:hover {
+    background: #c53333;
+  }
+
+  &:active {
+    background: #ff4040;
+    opacity: 0.8;
+  }
+}

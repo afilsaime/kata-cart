@@ -47,4 +47,13 @@ h3 {
   padding: .5em 1em;
   background: #33a594;
   color: white;
+
+  &:hover {
+    background: #2e9485;
+  }
+
+  &:active {
+    background: #33a594;
+    opacity: 0.8;
+  }
 }
