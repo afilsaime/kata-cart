@@ -157,6 +157,15 @@ export const MOCK_PRODUCTS: Product[] = [
 
 export const MOCK_PRODUCTS_WITH_TAXES: Product[] = [
   {
+    id: 1,
+    productName: '',
+    price: 1.76,
+    quantity: 7,
+    isImported: true,
+    category: 'Food',
+    taxIncludedPrice: 1.86,
+  },
+  {
     id: 14,
     productName: 'Apple - Fuji',
     price: 4.37,

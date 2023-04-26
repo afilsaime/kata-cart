@@ -3,7 +3,8 @@
     <h1 data-test="app-name">Kata Panier</h1>
     <nav>
       <a data-test="products-page-link" [routerLink]="['/products']" routerLinkActive="active">Produits</a>
-      <a data-test="cart-page-link" [routerLink]="['/cart']" routerLinkActive="active">Panier</a>
+      <a data-test="cart-page-link" class="cart-page-link" [routerLink]="['/cart']" routerLinkActive="active">Panier
+        <span data-test="cart-items-count" *ngIf="cartItemsCount$ | async as count">{{ count }}</span></a>
     </nav>
   </header>
 

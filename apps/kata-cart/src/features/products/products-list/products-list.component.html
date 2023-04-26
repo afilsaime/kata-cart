@@ -8,7 +8,7 @@
 <section id="products-list" class="flex flex-wrap space-between">
   <ng-container *ngFor="let product of products$ | async">
     <kc-ui-product-card data-test="product-card" *ngIf="product.productName && product.taxIncludedPrice"
-      [name]="product.productName" [category]="product.category"
-      [taxIncludedPrice]="product.taxIncludedPrice"></kc-ui-product-card>
+      [name]="product.productName" [category]="product.category" [taxIncludedPrice]="product.taxIncludedPrice"
+      (addToCart)="onAddToCart(product)"></kc-ui-product-card>
   </ng-container>
 </section>

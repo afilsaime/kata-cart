@@ -42,4 +42,11 @@ describe('UiProductCardComponent', () => {
       spectator.query('[data-test=product-tax-included-price]')?.textContent
     ).toMatch(/3,00\s€/);
   });
+
+  it('should emit an addToCart event on add to card button click', () => {
+    const addToCardSpy = jest.spyOn(spectator.component.addToCart, 'emit');
+    spectator.click('.add-to-cart');
+
+    expect(addToCardSpy).toBeCalledTimes(1);
+  });
 });

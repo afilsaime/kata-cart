@@ -10,6 +10,7 @@ import {
 import { ProductsListComponent } from './products-list.component';
 import { ProductsService } from '@kata-cart/data-access/products';
 import { of } from 'rxjs';
+import { CartService } from '@kata-cart/data-access/cart';
 
 describe('ProductsListComponent', () => {
   let spectator: Spectator<ProductsListComponent>;
@@ -60,5 +61,21 @@ describe('ProductsListComponent', () => {
     spectator.click('[data-test=clear-filter-button]');
     expect(mockProductsService.selectCategory).toHaveBeenCalledTimes(1);
     expect(mockProductsService.selectCategory).toHaveBeenCalledWith('');
+  });
+
+  it('should add a product to the cart', () => {
+    const cartService = spectator.inject(CartService);
+    jest.spyOn(cartService, 'addToCart');
+
+    spectator.triggerEventHandler(
+      'kc-ui-product-card',
+      'addToCart',
+      MOCK_PRODUCTS_WITH_TAXES[1]
+    );
+
+    expect(cartService.addToCart).toHaveBeenCalledTimes(1);
+    expect(cartService.addToCart).toHaveBeenCalledWith(
+      MOCK_PRODUCTS_WITH_TAXES[1]
+    );
   });
 });

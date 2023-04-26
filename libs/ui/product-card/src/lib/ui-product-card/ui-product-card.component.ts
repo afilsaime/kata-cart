@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,4 +19,5 @@ export class UiProductCardComponent {
   @Input() name!: string;
   @Input() category!: string;
   @Input() taxIncludedPrice!: number;
+  @Output() addToCart = new EventEmitter<void>();
 }
