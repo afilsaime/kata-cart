@@ -6,7 +6,17 @@
 
 ## Development server
 
-Run `nx serve server` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `nx serve server` to run the nestjs server. Navigate to http://localhost:3000/api/products to see the products api. The app will automatically reload if you change any of the source files.<br/>
+Run `nx serve kata-kart` for the angular dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+## Unit tests
+
+Run `nx run-many --target=test` to run the unit tests of all projects or `nx test [project-name]` to run the tests of a specific project
+
+## Integration tests
+
+Run `nx run-many --target=e2e` to run the integration tests of all projects or `nx e2e [project-name]` to run the integration tests of a specific e2e project<br/>
+For the web app, you can also run cypress in interactive mode by running `nx e2e kata-cart-e2e --watch`
 
 ## Understand this workspace
 
